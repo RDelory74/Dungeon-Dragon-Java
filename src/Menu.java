@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 
@@ -8,34 +7,36 @@ public class Menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
+        String characterType = "";
 
         System.out.println("Welcome to Dungeons & Dragons!");
         System.out.println("Let's create a new player");
 
+            System.out.print("Enter your character name: ");
+            String characterName = sc.nextLine();
+        while(!characterType.equals("Warrior")&& !characterType.equals("Wizard")) {
+            System.out.print("Enter your character Type Choose Warrior or Wizard: ");
+             characterType = sc.nextLine();
+        }
 
-        System.out.print("Enter your character name: ");
-        String characterName = sc.nextLine();
-        System.out.print("Enter your character Type Choose Warrior or Wizard: ");
-        String characterType = sc.nextLine();
-
-        if( characterType.equals("Warrior")||characterType.equals("Wizard")) {
             Character character = new Character(characterName, characterType);
 
-        System.out.println("C'est alors que des entrailles de l'abysse jailli notre nouveau héros: \n " + character.toString());
+        System.out.println("C'est alors que des entrailles de l'abyss jailli notre nouveau héros: \n " + character.toString());
 
 
-        while (true) {
+        while (true) { // Remplacement possible par un tant que choice !=3
             System.out.println("\nMain Menu:");
             System.out.println("1. Voir Info Héros");
             System.out.println("2. Modifier infos Héros");
-            System.out.println("0. Exit");
+            System.out.println("3. Entrez dans l'aventure");
+            System.out.println("0. Exit Game");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
             if (choice == 0) {
                 break;
             } else if (choice == 1) {
-                System.out.println("Info Héros");
-                System.out.println("Name :" + character.getName() +
+                System.out.println("\n Info Héros");
+                System.out.println("\nName :" + character.getName() +
                         "\n" + "PV :" + character.getVie() +
                         "\n" + "Force :" + character.getStrength() +
                         "\n" + "Arme :" + character.getWeapon() +
@@ -68,10 +69,8 @@ public class Menu {
                 System.out.println("Invalid choice. Try again.");
             }
         }
-        }else {
-            System.out.println("Invalid choice. Try again.");
         }
 
     }
 
-}
+

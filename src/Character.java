@@ -21,7 +21,7 @@ public Character(String name, String type) {
     } else if (type.equals("Wizard")) {
         this.pv = 6;
         this.strength = 15;
-        this.weapon = "un sportilège";
+        this.weapon = "un sortilège";
         this.defense = "une potion";
     } else {
         System.out.println("Not the right type character");
@@ -54,7 +54,7 @@ public Character(String name, String type) {
 
     }
 //getter setter
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
