@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Character {
 //instance field
-    private String name;
+    private static String name;
     private int pv;
     private int strength;
     private String weapon;
@@ -10,7 +10,7 @@ public class Character {
     private String type;
 
     // constructor
-public Character(String name, String type) {
+public  Character(String name, String type) {
     this.name = name;
     this.type = type;
     if(type.equals("Warrior")){
@@ -18,6 +18,7 @@ public Character(String name, String type) {
         this.strength = 10;
         this.weapon = "Escalibur";
         this.defense = "un bouclier";
+
     } else if (type.equals("Wizard")) {
         this.pv = 6;
         this.strength = 15;
@@ -49,12 +50,12 @@ public Character(String name, String type) {
                 " , tu disposeras de  " + this.pv +
                 " points de vie, tu es un " + this.type +
                 " avec une force de " + this.strength +
-                " points tu manieras " + this.weapon +
+                " points, tu manieras " + this.weapon +
                 " et tu te défendras avec  " + this.defense;
 
     }
 //getter setter
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
@@ -92,8 +93,23 @@ public Character(String name, String type) {
     public void setDefense(String defense) {
         this.defense = defense;
     }
+
     public void setType(String type) {
         this.type = type;
+        if(type.equals("Warrior")){
+            this.pv = 10;
+            this.strength = 10;
+            this.weapon = "Escalibur";
+            this.defense = "un bouclier";
+
+        } else if (type.equals("Wizard")) {
+            this.pv = 6;
+            this.strength = 15;
+            this.weapon = "un sortilège";
+            this.defense = "une potion";
+        } else {
+            System.out.println("Not the right type character");
+        }
     }
 
     public String getType() {

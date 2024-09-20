@@ -1,41 +1,40 @@
-import java.util.Scanner;
+import java.util.Scanner; //J'appel les fonctions utiles
 import java.util.Random;
 
 
 
-public class Menu {
+public class Menu  {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
-        String characterType = "";
-
+        String characterType = ""; // je créé une variable characterType pour contrôler le choix du type du joueur.
         System.out.println("Welcome to Dungeons & Dragons!");
         System.out.println("Let's create a new player");
 
-            System.out.print("Enter your character name: ");
+            System.out.print("Enter your character name: "); // utilisation de scanner pour créer son perso
             String characterName = sc.nextLine();
-        while(!characterType.equals("Warrior")&& !characterType.equals("Wizard")) {
+        while(!characterType.equals("Warrior")&& !characterType.equals("Wizard")) { // boucle qui dit que tant que Warrior
             System.out.print("Enter your character Type Choose Warrior or Wizard: ");
              characterType = sc.nextLine();
         }
 
-            Character character = new Character(characterName, characterType);
+            Character character = new Character(characterName, characterType);  //instanciation d'un nouveau joueur
 
         System.out.println("C'est alors que des entrailles de l'abyss jailli notre nouveau héros: \n " + character.toString());
 
 
         while (true) { // Remplacement possible par un tant que choice !=3
-            System.out.println("\nMain Menu:");
-            System.out.println("1. Voir Info Héros");
-            System.out.println("2. Modifier infos Héros");
-            System.out.println("3. Entrez dans l'aventure");
-            System.out.println("0. Exit Game");
+            System.out.println("\n**** Menu ****:");
+            System.out.println("*1. Voir Info Héros*");
+            System.out.println("*2. Modifier infos Héros*");
+            System.out.println("*3. Entrez dans l'aventure*");
+            System.out.println("*0. Exit Game*");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
             if (choice == 0) {
                 break;
             } else if (choice == 1) {
-                System.out.println("\n Info Héros");
+                System.out.println("\n*** Info Héros ***");
                 System.out.println("\nName :" + character.getName() +
                         "\n" + "PV :" + character.getVie() +
                         "\n" + "Force :" + character.getStrength() +
@@ -49,15 +48,15 @@ public class Menu {
                 System.out.println("2. Modifier Type");
                 System.out.println("0. Back");
                 System.out.print("Enter your choice: ");
-                int custChoice = sc.nextInt();
-                if (custChoice == 0) {
+                int customChoice = sc.nextInt();
+                if (customChoice == 0) {
                     System.out.println("Retour au menu");
-                } else if (custChoice == 1) {
+                } else if (customChoice == 1) {
                     System.out.println("Nouveau nom du Héros:");
                     sc.nextLine();
                     character.setName(sc.nextLine());
                     System.out.println("Le nouveau nom du héros a bien été remplacé par: "+character.getName());
-                } else if (custChoice == 2) {
+                } else if (customChoice == 2) {
                     System.out.println("Nouveau type de Héros (Wizard ou Warrior): ");
                     sc.nextLine();
                     character.setType(sc.nextLine());
@@ -65,11 +64,14 @@ public class Menu {
                 } else {
                     System.out.println("Invalid choice. Try again.");
                 }
+
+            } else if (choice == 3) {
+                   Game.main(args);
             } else {
                 System.out.println("Invalid choice. Try again.");
             }
         }
-        }
+    }
 
     }
 
