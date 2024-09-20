@@ -1,30 +1,27 @@
+package Item;
 
+public abstract class Weapon {
 
-public class Weapon {
-
-    //instance field
+    //Attributs
     private String name;
     private int attack;
     private String weaponType;
 
 
 // constructor
-    public Weapon(String weaponType) {
-        if(weaponType.equals("weapon")){
-            this.name = "Epee";
-            this.attack = 10;
-
-        } else if (weaponType.equals("spell")){
-            this.name = "Sort";
-            this.attack = 8;
-        }
+    public Weapon(String name) {
+        this.name = name;
     }
 
     public Weapon() {
     }
 //method
-    public void chling() {
-        System.out.println("Chling!");
+
+    public abstract void use ();
+
+
+    public String toString() {
+        return "Chling!";
     }
 
 
@@ -41,7 +38,7 @@ public class Weapon {
         return attack;
     }
 
-    public void setsetAttack(int attack) {
+    public void setAttack(int attack) {
         this.attack = attack;
     }
 

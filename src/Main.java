@@ -1,13 +1,8 @@
-import java.util.Scanner;
-import java.util.Random;
-
-
+import Donjon_Dragons.Menu;
 
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Hello world!");
-
-        Menu.main(args);
+        Menu menu = new Menu();
+        menu.start();
     }
 }

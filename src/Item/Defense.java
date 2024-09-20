@@ -1,5 +1,6 @@
+package Item;
 
-public class Defense {
+public abstract class Defense {
 
     //instance field
     private String name;
@@ -8,23 +9,17 @@ public class Defense {
 
 
 // constructor
-public Defense(String defenseType) {
-    if(defenseType.equals("Shield")){
-        this.name = "Bouclier";
-        this.defense = 6;
-
-    } else if (defenseType.equals("Potion")){
-        this.name = "Philtre";
-        this.defense = 5;
-    }
+public Defense(String name) {
+ this.name = name;
 }
 
     public Defense() {
     }
 
 //method
-    public void fffuittt() {
-        System.out.println("fffuittt!");
+    public abstract void use ();
+    public String toString() {
+        return "Chloung!";
     }
 
 
