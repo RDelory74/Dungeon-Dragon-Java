@@ -60,9 +60,9 @@ public class Game {
 
             System.out.println("\n\n********** "+character.getName() + " es sur la case n°"+ currentCase +"!!! **********\n");
             System.out.println("\nQue fais-tu "+ character.getName() + "?? :");
-
             System.out.println("* Appuis sur 1 pour lancer un dé !!! *");
             System.out.println("* Appuis sur 0 pour quitter la partie et retourner au Menu !!! *");
+
             System.out.print("Que faits-tu ? ");
             int playerChoice = sc.nextInt();
             if(playerChoice == 0 ){
@@ -77,7 +77,7 @@ public class Game {
                     //System.out.println("*** Tu as fait un " + diceRoll + " avec un dé " + diceType + ". ***\n\n");
                     if (currentCase > maxCase) {
                         throw new PersonnageHorsPlateauException("********** Tu es allé trop loin gros !!! **********" );
-                    }else if (currentCase <= plateau.size()) {
+                    } else if (currentCase <= plateau.size()) {
                         // Récupérer la case actuelle du plateau
                         Case currentPlateauCase = plateau.get(currentCase - 1);  // -1 car les indices commencent à 0
                         System.out.println("Tu arrives sur une nouvelle case : " + currentPlateauCase);

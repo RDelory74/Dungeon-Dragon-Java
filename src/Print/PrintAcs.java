@@ -77,7 +77,28 @@ public class PrintAcs{
                     "_______________*#*\n" +
                     "________________*");
         } else if (type.equals("victory")){
-            System.out.println("");
+            System.out.println(
+                    "                              .sssssssss.\n" +
+                    "                        .sssssssssssssssssss\n" +
+                    "                      sssssssssssssssssssssssss\n" +
+                    "                     ssssssssssssssssssssssssssss\n" +
+                    "                      @@sssssssssssssssssssssss@ss\n" +
+                    "                      |s@@@@sssssssssssssss@@@@s|s\n" +
+                    "               _______|sssss@@@@@sssss@@@@@sssss|s\n" +
+                    "             /         sssssssss@sssss@sssssssss|s\n" +
+                    "            /  .------+.ssssssss@sssss@ssssssss.|\n" +
+                    "           /  /       |...sssssss@sss@sssssss...|\n" +
+                    "          |  |        |.......sss@sss@ssss......|\n" +
+                    "          |  |        |..........s@ss@sss.......|\n" +
+                    "          |  |        |...........@ss@..........|\n" +
+                    "           \\  \\       |............ss@..........|\n" +
+                    "            \\  '------+...........ss@...........|\n" +
+                    "             \\________ .........................|\n" +
+                    "                      |.........................|\n" +
+                    "                     /...........................\\\n" +
+                    "                    |.............................|\n" +
+                    "                       |.......................|\n" +
+                    "                           |...............|");
         } else if (type.equals("fight")){
             System.out.println("");
         } else if (type.equals("Welcome")){
