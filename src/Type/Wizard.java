@@ -7,9 +7,9 @@ public class Wizard extends Player {
 public Wizard(String name) {
     setName(name);
     setPv(6);
-    setStrength(15);
-    setWeapon("Item.Sort");
-    setDefense("Potion");
+    setStrength(2);
+    setWeapon("Sort d'apprentis");
+    setDefense("Philtre d'apprentis");
     setType("Wizard");
 }
 
@@ -20,8 +20,20 @@ public Wizard(String name) {
 //method
 
     @Override
-    public void attack() {
-        System.out.println(getName() + " lance un" +getWeapon() + "sort !");
+    public void levelUp() {
+        if (getExp() > 10) {
+            setLevel(+1);
+            setPv(+1);
+            setStrength(+1);
+            System.out.println(getName() + " monte au niveau " + getLevel() + "!"+"\n"+
+                    "-------------- "+getName()+"\n"+
+                    "|Pv: (+1)      "+getVie()+"pv\n"+
+                    "|Attaque: (+1) "+getStrength()+"Force\n"+
+                    "------------------------------\n");
+            setExp(0);
+        } else {
+            System.out.println("Xp du joeur: " + getExp() + "!");
+        }
     }
 }
 

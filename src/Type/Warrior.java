@@ -9,8 +9,8 @@ public class Warrior extends Player {
         setName(name);
         setPv(10);
         setStrength(10);
-        setWeapon("épée");
-        setDefense("un bouclier");
+        setWeapon("épée en bois");
+        setDefense("bouclier banal");
         setType("Warrior");
 
     }
@@ -25,8 +25,16 @@ public class Warrior extends Player {
 
 
     @Override
-    public void attack() {
-        System.out.println(getName() + " attaque avec une " + getWeapon() + " !");
+    public void levelUp() {
+        if (getExp() > 10) {
+            setLevel(+1);
+            setPv(+2);
+            setStrength(+2);
+            System.out.println(getName() + " monte au niveau" + getLevel() + "!");
+            setExp(0);
+        } else {
+            System.out.println("Xp du joeur: " + getExp() + "!");
+        }
     }
 }
 

@@ -9,12 +9,19 @@ public abstract class Player {
     private String weapon;
     private String defense;
     private String type;
+    private int exp;
+    private int gold;
+    private int level;
+
 
     // constructor
 
     public Player(String name) {
         Scanner scan = new Scanner (System.in);
         this.name = scan.nextLine();
+        setOr(0);
+        setExp(0);
+        setLevel(1);
     }
 
     public Player() {
@@ -22,7 +29,7 @@ public abstract class Player {
 
 
 //method
-public abstract void attack();
+public abstract void levelUp();
 
     public String toString() {
         return  "Nom:  " + this.name +
@@ -30,7 +37,9 @@ public abstract void attack();
                 "// Force:  " + this.strength +
                 "// Arme: " + this.weapon +
                 "// Défense:   " + this.defense+
-                "// Type: " + this.type;
+                "// Type: " + this.type +
+                "// Experience: " + this.exp + "xp" +
+                "// Or: " + this.gold;
     }
 //getter setter
     public String getName() {
@@ -77,6 +86,27 @@ public abstract void attack();
 
     public void setType(String defense) {
         this.type = defense;
+    }
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int Exp) {
+        this.exp = Exp;
+    }
+    public int getOr() {
+        return gold;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    public int getLevel() {
+        return level;
+    }
+
+    public void setOr(int gold) {
+        this.gold = gold;
     }
 }
 
