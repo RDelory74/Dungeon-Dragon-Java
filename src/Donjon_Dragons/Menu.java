@@ -11,34 +11,15 @@ public class Menu  {
     public void start() {
         //Attributs
         Scanner sc = new Scanner(System.in);
-        String characterType = "";
-        Player character= null;
         PrintAcs printThings = new PrintAcs();
+
         //Création du perso pour le faire ne méthode il faut bien que je déclare ma méthode avec le type de retour désiré à savoir un Player
         System.out.println("             ******** Welcome to Dungeons & Dragons! ********");
         System.out.println("              ******** Let's create a new player ********");
-        while (!characterType.equals("Type.Warrior") && !characterType.equals("Type.Wizard")) { // boucle qui dit que tant que Type.Warrior
-            System.out.println("\n\nEnter your character Type: Choose Warrior or Wizard: ");
-            System.out.println("1. Type.Warrior");
-            System.out.println("2. Type.Wizard");
-            int typeChoice = sc.nextInt();
-            sc.nextLine();
-            System.out.print("Enter your character name: "); // utilisation de scanner pour créer son perso
-            String characterName = sc.nextLine();
-            if (typeChoice == 1) {
-                character = new Warrior(characterName);
-                characterType = "Type.Warrior";
-                printThings.Print("warrior");
 
-            } else if (typeChoice == 2) {
-                character = new Wizard(characterName);
-                characterType = "Type.Wizard";
-                printThings.Print("wizard");
-            } else {
-                System.out.println("Aucun personnage n'a été créé.");
-            }
-        }
-    // appel aux méthodes
+        Player character = creerPersonnage(sc,printThings);
+
+    // Appel aux méthodes
         textPrez(character);
         afficherMenuAccueil(sc,character);
     }
@@ -67,21 +48,21 @@ public class Menu  {
                 System.out.println("\n*** Info Héros ***");
                 System.out.println(character.toString());
             } else if (choice == 2) {
-
-                System.out.println("Enter your character Type Choose Type.Warrior or Type.Wizard: ");
-                System.out.println("1. Type.Warrior");
-                System.out.println("2. Type.Wizard");
-             modifierInfoPerso(sc,character);
+             character = modifierInfoPerso(sc,character);
             } else if (choice == 3) {
-                Game game = new Game(64);  // Crée une instance de Game
+                Game game = new Game("IN_PROGRESS");  // Crée une instance de Game
                 game.startGame(character);
-
             } else {
                 System.out.println("Invalid choice. Try again.");
             }
         }
     }
-public void modifierInfoPerso(Scanner sc,Player character){
+
+
+public Player modifierInfoPerso(Scanner sc,Player character){
+    System.out.println("Enter your character Type Choose Type.Warrior or Type.Wizard: ");
+    System.out.println("1. Type.Warrior");
+    System.out.println("2. Type.Wizard");
     int typeChoice = sc.nextInt();
     sc.nextLine();
     System.out.print("Enter your character name: "); // utilisation de scanner pour créer son perso
@@ -93,8 +74,37 @@ public void modifierInfoPerso(Scanner sc,Player character){
     } else {
         System.out.println("Invalid choice. Try again.");
     }
+    return character;
 }
+    public Player creerPersonnage(Scanner sc, PrintAcs printThings) {
+        String characterType = "";
+        Player character = null;
 
+        while (!characterType.equals("Type.Warrior") && !characterType.equals("Type.Wizard")) {
+            System.out.println("\n\nEnter your character Type: Choose Warrior or Wizard: ");
+            System.out.println("1. Type.Warrior");
+            System.out.println("2. Type.Wizard");
+            int typeChoice = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Enter your character name: ");
+            String characterName = sc.nextLine();
+
+            if (typeChoice == 1) {
+                character = new Warrior(characterName);
+                characterType = "Type.Warrior";
+                printThings.Print("warrior");
+            } else if (typeChoice == 2) {
+                character = new Wizard(characterName);
+                characterType = "Type.Wizard";
+                printThings.Print("wizard");
+            } else {
+                System.out.println("Choix invalide. Aucun personnage n'a été créé.");
+            }
+        }
+
+        return character;  // Retourne le personnage créé
     }
+
+}
 
 
