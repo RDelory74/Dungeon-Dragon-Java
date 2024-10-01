@@ -38,11 +38,14 @@ public class Arme extends Weapon implements Case {
         } else {
             System.out.println("* Tu es actuelement équipé de "+ character.getWeapon()+", souhaites-tu remplacer par"+ getName() + " ? *");
             System.out.println("* 1. Oui, je la veux !! *");
-            System.out.println("* 2. Non, je garde mon arme "+character.getWeapon()+" *");
+            System.out.println("* 2. Non, je garde mon arme "+character.getWeapon()+" et laisse " +getName()+ "ici !! *");
+            System.out.println("* 3. Je vais tenter de mettre ça dans mon sac *");
             int playerChoice = sc.nextInt();
             if(playerChoice == 1 ){
                 character.setWeapon(getName());
                 character.setStrength(character.getStrength()+getAttack());
+            } else if (playerChoice == 3 ){
+                character.addItemToInventory(getName(),getWeight());
             }
         }
     }

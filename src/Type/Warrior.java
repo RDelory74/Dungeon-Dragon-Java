@@ -9,8 +9,8 @@ public class Warrior extends Player {
         setName(name);
         setPv(10);
         setStrength(10);
-        setWeapon("épée en bois");
-        setDefense("bouclier banal");
+        setWeapon("Epée en bois");
+        setDefense("Bouclier banal");
         setType("Warrior");
 
     }

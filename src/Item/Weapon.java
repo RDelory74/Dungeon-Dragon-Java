@@ -6,7 +6,8 @@ public abstract class Weapon {
     private String name;
     private int attack;
     private String weaponType;
-
+    private int weight;
+    private int value;
 
 // constructor
     public Weapon(String name) {
@@ -49,5 +50,20 @@ public abstract class Weapon {
         this.weaponType = weaponType;
     }
 
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }
 
