@@ -33,13 +33,13 @@ public abstract void levelUp();
 
     public String toString() {
         return  "Nom:  " + this.name +
-                "// Points de vie:   " + this.pv +
-                "// Force:  " + this.strength +
-                "// Arme: " + this.weapon +
-                "// Défense:   " + this.defense+
-                "// Type: " + this.type +
-                "// Experience: " + this.exp + "xp" +
-                "// Or: " + this.gold;
+                " || Points de vie:   " + this.pv +
+                " || Force:  " + this.strength +
+                " || Arme: " + this.weapon +
+                " || Défense: " + this.defense+
+                " || Type: " + this.type +
+                " || Level: " + this.exp +
+                " || Or: " + this.gold;
     }
 //getter setter
     public String getName() {

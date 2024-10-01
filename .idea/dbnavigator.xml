@@ -25,11 +25,18 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="aa461d9c-0728-40af-8d38-8496bb764205" object-ref="consoles/DonjonsEtDragons" />
+      <object connection-id="aa461d9c-0728-40af-8d38-8496bb764205" object-ref="schemas/DonjonsEtDragons/tables/Player" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="aa461d9c-0728-40af-8d38-8496bb764205" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.Player" active-filter-id="">
+      <filter id="e55bfe4e-5575-431f-b78b-0109688d304b" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

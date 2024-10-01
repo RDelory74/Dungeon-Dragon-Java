@@ -6,6 +6,7 @@ import Item.Arme;
 import Item.Bouclier;
 import Item.Potion;
 import Print.PrintAcs;
+import db.PlayerDAO;
 import myExceptions.PersonnageHorsPlateauException;
 
 import java.util.Scanner;
@@ -64,15 +65,16 @@ public class Game {
 
             System.out.println("\n\n********** "+character.getName() + " es sur la case n°"+ currentCase +"!!! **********\n");
             System.out.println("\nQue fais-tu "+ character.getName() + "?? :");
-            System.out.println("* Appuis sur 1 pour lancer un dé !!! *");
-            System.out.println("* Appuis sur 0 pour quitter la partie et retourner au Menu !!! *");
-            System.out.println("* Appuis sur 3 pour Pour voir tes infos  *");
+            System.out.println("*  1 Lancer un Dé !!! *");
+            System.out.println("*  2 Quitter la partie *");
+            System.out.println("*  3 Infos Heros  *");
+            System.out.println("*  4 Sauvegarder le Heros  *");
 
             System.out.print("Que faits-tu ? ");
             int playerChoice = sc.nextInt();
-            if(playerChoice == 0 ){
+            if(playerChoice == 2 ){
                 break;
-            } else if (playerChoice==1) {
+            } else if (playerChoice== 1) {
                 try {
                     //System.out.print("Entre le type de dé que tu souhaites lancer: (4, 6, 8, 10, 12, 20): \n\n");
                     //int diceType = sc.nextInt();
@@ -97,6 +99,9 @@ public class Game {
                 }
             } else if (playerChoice == 3){
                 System.out.println(character);
+            } else if (playerChoice == 4){
+                PlayerDAO playerDAO = new PlayerDAO();
+                playerDAO.updatePlayer(character);
             }
         }
 
@@ -132,8 +137,8 @@ public class Game {
         } for (int i = 0; i < emptyElements; i ++){
             plateau.add(new Empty(i +1));
         }
-        System.out.println(plateau);
+
         java.util.Collections.shuffle(plateau);
-        System.out.println(plateau);
+       // System.out.println(plateau);
     }
 }

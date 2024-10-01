@@ -1,32 +1,22 @@
 package db;
 
 import Donjon_Dragons.Player;
+import Type.Warrior;
+import Type.Wizard;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class PlayerDAO {
 
-    private Connection connect() {
-        // Connection
-        Connection conn = null;
-        try {
-            String url = "jdbc:mysql://localhost:3306/DonjonsEtDragons";
-            String user = "root";
-            String password = "password";
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
+public class PlayerDAO extends ConnectionDAO {
+
+
 
     public void createPlayer(Player player) {
 
         // Méthode pour créer un joueur
-        String sql = "INSERT INTO Player(name, pv, strength, weapon, defense, type, exp, or, level) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Player(name, pv, strength, weapon, defense, type, exp, gold, level) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -47,7 +37,9 @@ public class PlayerDAO {
             System.out.println(e.getMessage());
         }
     }
-    /*
+
+
+
     // Méthode pour afficher tous les joueurs
     public List<Player> getAllPlayers() {
         List<Player> players = new ArrayList<>();
@@ -57,23 +49,141 @@ public class PlayerDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
+
             while (rs.next()) {
-                Player player = new Player();
-                player.setName(rs.getString("name"));
-                player.setPv(rs.getInt("pv"));
-                player.setStrength(rs.getInt("strength"));
-                player.setWeapon(rs.getString("weapon"));
-                player.setDefense(rs.getString("defense"));
-                player.setType(rs.getString("type"));
-                player.setExp(rs.getInt("exp"));
-                player.setOr(rs.getInt("or"));
-                player.setLevel(rs.getInt("level"));
-                players.add(player);
+                Player player = null;
+                String type = rs.getString("type");
+
+                // Instanciation selon le type
+                if ("Wizard".equalsIgnoreCase(type)) {
+                    player = new Wizard(rs.getString("name"));
+                } else if ("Warrior".equalsIgnoreCase(type)) {
+                    player = new Warrior(rs.getString("name"));
+                }
+
+                // Remplir les attributs du joueur
+                if (player != null) {
+                    player.setPv(rs.getInt("pv"));
+                    player.setStrength(rs.getInt("strength"));
+                    player.setWeapon(rs.getString("weapon"));
+                    player.setDefense(rs.getString("defense"));
+                    player.setExp(rs.getInt("exp"));
+                    player.setOr(rs.getInt("gold"));
+                    player.setLevel(rs.getInt("level"));
+                    players.add(player);
+                }
             }
+
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return players;
     }
-*/
+    public void updatePlayer(Player player) {
+        String sql = "UPDATE Player SET name = ?, pv = ?, strength = ?, weapon = ?, defense = ?, type = ?, exp = ?, gold = ?, level = ? WHERE name = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // Mettre à jour les informations du joueur
+            pstmt.setString(1, player.getName());
+            pstmt.setInt(2, player.getVie());
+            pstmt.setInt(3, player.getStrength());
+            pstmt.setString(4, player.getWeapon());
+            pstmt.setString(5, player.getDefense());
+            pstmt.setString(6, player.getType());
+            pstmt.setInt(7, player.getExp());
+            pstmt.setInt(8, player.getOr());
+            pstmt.setInt(9, player.getLevel());
+            pstmt.setString(10, player.getName()); // Utilise le nom actuel comme clé pour identifier le joueur à modifier
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Player updated successfully.");
+            } else {
+                System.out.println("Player not found.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error updating player: " + e.getMessage());
+        }
+    }
+    // Méthode pour récupérer un joueur par son nom
+
+    public Player getPlayerByName(String playerName) {
+        String sql = "SELECT * FROM Player WHERE name = ?";
+        Player player = null;
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, playerName); // Requête basée sur le nom du joueur
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Vérification du type pour instancier la bonne sous-classe (Warrior ou Wizard)
+                    String type = rs.getString("type");
+                    if ("Warrior".equalsIgnoreCase(type)) {
+                        player = new Warrior(rs.getString("name"));
+                    } else if ("Wizard".equalsIgnoreCase(type)) {
+                        player = new Wizard(rs.getString("name"));
+                    }
+
+                    // Remplir les autres attributs
+                    if (player != null) {
+                        player.setPv(rs.getInt("pv"));
+                        player.setStrength(rs.getInt("strength"));
+                        player.setWeapon(rs.getString("weapon"));
+                        player.setDefense(rs.getString("defense"));
+                        player.setExp(rs.getInt("exp"));
+                        player.setOr(rs.getInt("gold"));
+                        player.setLevel(rs.getInt("level"));
+                    }
+                } else {
+                    System.out.println("Player not found.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving player: " + e.getMessage());
+        }
+
+        return player;
+    }
+    public Player getLastPlayer() {
+        String sql = "SELECT * FROM Player ORDER BY id DESC LIMIT 1";
+        Player player = null;
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                // Vérification du type pour instancier la bonne sous-classe (Warrior ou Wizard)
+                String type = rs.getString("type");
+                if ("Warrior".equalsIgnoreCase(type)) {
+                    player = new Warrior(rs.getString("name"));
+                } else if ("Wizard".equalsIgnoreCase(type)) {
+                    player = new Wizard(rs.getString("name"));
+                }
+
+                // Remplir les autres attributs
+                if (player != null) {
+                    player.setPv(rs.getInt("pv"));
+                    player.setStrength(rs.getInt("strength"));
+                    player.setWeapon(rs.getString("weapon"));
+                    player.setDefense(rs.getString("defense"));
+                    player.setExp(rs.getInt("exp"));
+                    player.setOr(rs.getInt("or"));
+                    player.setLevel(rs.getInt("level"));
+                }
+            } else {
+                System.out.println("No players found.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving last player: " + e.getMessage());
+        }
+
+        return player;
+    }
 }
