@@ -150,6 +150,25 @@ public class PlayerDAO extends ConnectionDAO {
 
         return player;
     }
+    public void deletePlayer(String playerId) {
+        String sql = "DELETE FROM Player WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, playerId); // Utiliser l'ID pour identifier le joueur à supprimer
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Player deleted successfully.");
+            } else {
+                System.out.println("Player not found.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error deleting player: " + e.getMessage());
+        }
+    }
     public Player getLastPlayer() {
         String sql = "SELECT * FROM Player ORDER BY id DESC LIMIT 1";
         Player player = null;

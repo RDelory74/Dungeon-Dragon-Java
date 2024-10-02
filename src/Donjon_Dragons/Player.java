@@ -50,7 +50,7 @@ public abstract class Player {
                 " || Arme: " + this.weapon +
                 " || Défense: " + this.defense +
                 " || Type: " + this.type +
-                " || Level: " + this.exp +
+                " || Level: " + this.level +
                 " || Or: " + this.gold;
     }
 

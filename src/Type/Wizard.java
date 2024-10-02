@@ -22,9 +22,9 @@ public Wizard(String name) {
     @Override
     public void levelUp() {
         if (getExp() > 10) {
-            setLevel(+1);
-            setPv(+1);
-            setStrength(+1);
+            setLevel(getLevel()+1);
+            setPv(getVie()+1);
+            setStrength(getStrength()+1);
             System.out.println(getName() + " monte au niveau " + getLevel() + "!"+"\n"+
                     "-------------- "+getName()+"\n"+
                     "|Pv: (+1)      "+getVie()+"pv\n"+

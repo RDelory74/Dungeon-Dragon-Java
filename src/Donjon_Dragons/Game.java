@@ -2,6 +2,7 @@ package Donjon_Dragons;
 import BoardGame.*;
 import Item.*;
 import Print.PrintAcs;
+import com.sun.tools.javac.Main;
 import db.PlayerDAO;
 import myExceptions.PersonnageHorsPlateauException;
 
@@ -51,7 +52,7 @@ public class Game {
             System.out.println("\n\n********** "+character.getName() + " es sur la case n°"+ currentCase +"!!! **********\n");
             System.out.println("\nQue fais-tu "+ character.getName() + "?? :");
             System.out.println("*  1 Lancer un Dé !!! *");
-            System.out.println("*  2 Quitter la partie *");
+            System.out.println("*  2 Quitter le jeu *");
             System.out.println("*  3 Infos Heros  *");
             System.out.println("*  4 Sauvegarder le Heros  *");
             System.out.println("*  5 Ouvrir l'inventaire  *");
@@ -59,7 +60,8 @@ public class Game {
             System.out.print("Que faits-tu ? ");
             int playerChoice = sc.nextInt();
             if(playerChoice == 2 ){
-                break;
+                LoadPlayer loadPlayer = new LoadPlayer();
+                loadPlayer.MainChoice();
             } else if (playerChoice== 1) {
                 try {
                     //System.out.print("Entre le type de dé que tu souhaites lancer: (4, 6, 8, 10, 12, 20): \n\n");
