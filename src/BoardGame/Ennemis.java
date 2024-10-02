@@ -1,6 +1,8 @@
 package BoardGame;
 import Donjon_Dragons.Player;
 import Print.PrintAcs;
+import db.PlayerDAO;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -134,7 +136,9 @@ public  class Ennemis implements Case {
         } else if (character.getVie() <=0){
             System.out.println("* Mais t'es mort !!!  *");
             printThings.Print("death");
-
+            PlayerDAO playerDAO = new PlayerDAO();
+            playerDAO.deletePlayer(character.getId().toString());
+            System.exit(0);
         } else if (escapeResult > 2){
             System.out.println("* ... est c'est beau tu t'échappes !!!   *");
 

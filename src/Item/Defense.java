@@ -1,8 +1,9 @@
 package Item;
 
-public abstract class Defense {
+public abstract class Defense extends Item {
 
     //instance field
+
     private String name;
     private int defense;
     private String defenseType;
@@ -24,6 +25,7 @@ public Defense(String name) {
 
 
 //getter setter
+
     public String getName() {
         return name;
     }

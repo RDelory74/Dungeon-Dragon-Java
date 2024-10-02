@@ -1,5 +1,7 @@
 package Type;
 import Donjon_Dragons.Player;
+import Item.PhiltresSoin.SortCuratif;
+import Item.Sortileges.Sort_Apprentis;
 
 public class Wizard extends Player {
 
@@ -8,8 +10,8 @@ public Wizard(String name) {
     setName(name);
     setPv(6);
     setStrength(2);
-    setWeapon("Sort d'apprentis");
-    setDefense("Philtre d'apprentis");
+    setWeapon(new Sort_Apprentis());
+    setDefense(new SortCuratif());
     setType("Wizard");
 }
 
@@ -22,9 +24,9 @@ public Wizard(String name) {
     @Override
     public void levelUp() {
         if (getExp() > 10) {
-            setLevel(+1);
-            setPv(+1);
-            setStrength(+1);
+            setLevel(getLevel()+1);
+            setPv(getVie()+1);
+            setStrength(getStrength()+1);
             System.out.println(getName() + " monte au niveau " + getLevel() + "!"+"\n"+
                     "-------------- "+getName()+"\n"+
                     "|Pv: (+1)      "+getVie()+"pv\n"+

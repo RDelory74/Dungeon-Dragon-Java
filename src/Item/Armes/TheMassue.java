@@ -1,20 +1,19 @@
-package Item;
+package Item.Armes;
 
 import BoardGame.Case;
 
 public class TheMassue extends Arme implements Case {
 
 // constructor
-    public TheMassue(String name) {
+    public TheMassue() {
 
-        setName(name);
+        setName("The Massue");
         setAttack(12);
         setWeaponType("Massue");
         setValue(90);
         setWeight(4);
     }
-    public TheMassue() {
-    }
+
 
 //method
 

@@ -1,9 +1,9 @@
 package Donjon_Dragons;
 
 import BoardGame.*;
-import Item.Arme;
-import Item.Bouclier;
-import Item.Potion;
+import Item.Armes.Arme;
+import Item.Armures.Bouclier;
+import Item.Consumables.Potion;
 
 
 

@@ -1,19 +1,17 @@
-package Item;
+package Item.Armes;
 
 import BoardGame.Case;
 
-public class MassueBronze extends Arme implements Case {
+public class EpeeTitane extends Arme implements Case {
 
 // constructor
-    public MassueBronze(String name) {
+    public EpeeTitane() {
 
-        setName(name);
-        setAttack(6);
-        setWeaponType("Massue");
-        setValue(20);
-        setWeight(6);
-    }
-    public MassueBronze() {
+        setName("Epee de titane");
+        setAttack(9);
+        setWeaponType("Sword");
+        setValue(40);
+        setWeight(2);
     }
 
 //method

@@ -1,10 +1,10 @@
-package Item;
+package Item.Armures;
 
 import BoardGame.Case;
 import Donjon_Dragons.Player;
+import Item.Defense;
 import Print.PrintAcs;
 import Type.Warrior;
-import Type.Wizard;
 
 import java.util.Scanner;
 
@@ -17,9 +17,13 @@ public class Bouclier extends Defense implements Case {
         setName(name);
         setDefense(defense);
         setType(type);
+        setWeight(2);
+        setValue(10);
     }
 
     public Bouclier() {
+        setWeight(2);
+        setValue(10);
     }
 //method
 
@@ -37,13 +41,17 @@ public String toString() {
         Scanner sc = new Scanner(System.in);
 
         if(character instanceof Warrior) {
-            System.out.println("* Tu es actuelement équipé de " + character.getDefense() + ", souhaites-tu remplacer par " + getName() + " ? *");
+            System.out.println("* Tu es actuelement équipé de " + character.getDefense().getName() + ", souhaites-tu remplacer par " + getName() + " ? *");
+            System.out.println("Actual Defense : "+character.getDefense().getDefense()+" New defense:"+ getDefense() +"." );
             System.out.println("* 1. Oui, je la veux !! *");
-            System.out.println("* 2. Non, je garde mon " + character.getDefense() + " *");
+            System.out.println("* 2. Non, je garde "+character.getDefense().getName()+" et laisse " +getName()+ " ici !! *");
+            System.out.println("* 3. Je vais tenter de mettre ça dans mon sac *");
             int playerChoice = sc.nextInt();
             if (playerChoice == 1) {
-                character.setDefense(getName());
+                character.setDefense(this);
                 character.setPv(character.getVie() + getDefense());
+            }else if (playerChoice == 3 ){
+                character.addItemToInventory(this,this.getWeight());
             }
         }
 

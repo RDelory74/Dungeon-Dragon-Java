@@ -1,7 +1,8 @@
-package Item;
+package Item.Armes;
 
 import BoardGame.Case;
 import Donjon_Dragons.Player;
+import Item.Weapon;
 import Print.PrintAcs;
 import Type.Wizard;
 
@@ -12,12 +13,13 @@ public class Arme extends Weapon implements Case {
 
 // constructor
     public Arme(String name,int attack, String type) {
-
+        super();
         setName(name);
         setAttack(attack);
         setWeaponType(type);
     }
     public Arme() {
+        super();
     }
 //method
 
@@ -36,21 +38,22 @@ public class Arme extends Weapon implements Case {
         if(character instanceof Wizard){
             System.out.println("* Elle est si belle, mais même à deux mains tu ne peux la lever *");
         } else {
-            System.out.println("* Tu es actuelement équipé de "+ character.getWeapon()+", souhaites-tu remplacer par"+ getName() + " ? *");
+            System.out.println("* Tu es actuelement équipé de "+ character.getWeapon().getName()+", souhaites-tu remplacer par"+ getName() + " ? *");
+            System.out.println("Actual attack : "+character.getWeapon().getAttack()+" New attack:"+ getAttack() +"." );
             System.out.println("* 1. Oui, je la veux !! *");
-            System.out.println("* 2. Non, je garde mon arme "+character.getWeapon()+" et laisse " +getName()+ "ici !! *");
+            System.out.println("* 2. Non, je garde mon arme "+character.getWeapon().getName()+" et laisse " +getName()+ "ici !! *");
             System.out.println("* 3. Je vais tenter de mettre ça dans mon sac *");
             int playerChoice = sc.nextInt();
             if(playerChoice == 1 ){
-                character.setWeapon(getName());
+                character.setWeapon(this);
                 character.setStrength(character.getStrength()+getAttack());
             } else if (playerChoice == 3 ){
-                character.addItemToInventory(getName(),getWeight());
+                character.addItemToInventory(this,this.getWeight());
             }
         }
     }
     @Override
-    public  void use (){
+    public void use (){
         System.out.println("Tu utilises l'arme " + getName() + " pour attaquer ! Tu infliges"+ getAttack()+".");
     }
 

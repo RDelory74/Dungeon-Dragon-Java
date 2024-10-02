@@ -1,20 +1,21 @@
 package Item;
 
-public abstract class Weapon {
+public abstract class Weapon extends Item {
 
     //Attributs
-    private String name;
+
+
     private int attack;
     private String weaponType;
-    private int weight;
-    private int value;
+
 
 // constructor
     public Weapon(String name) {
-        this.name = name;
+        setName(name);
     }
 
     public Weapon() {
+        super();
     }
 //method
 
@@ -27,13 +28,7 @@ public abstract class Weapon {
 
 
 //getter setter
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getAttack() {
         return attack;
@@ -50,20 +45,6 @@ public abstract class Weapon {
         this.weaponType = weaponType;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getValue() {
-        return value;
-    }
 }
 

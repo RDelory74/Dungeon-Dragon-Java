@@ -16,7 +16,6 @@ public class Menu  {
         PrintAcs printThings = new PrintAcs();
 
 
-
         System.out.println("             ******** Welcome to Dungeons & Dragons! ********");
         System.out.println("              ******** Let's create a new player ********");
 
@@ -114,12 +113,14 @@ public Player modifierInfoPerso(Scanner sc,Player character){
 
             if (typeChoice == 1) {
                 character = new Warrior(characterName);
+                System.out.println("Creating player with ID: " + character.getId());
                 characterType = "Type.Warrior";
                 playerDAO.createPlayer(character);
                 printThings.Print("warrior");
 
             } else if (typeChoice == 2) {
                 character = new Wizard(characterName);
+                System.out.println("Creating player with ID: " + character.getId());
                 characterType = "Type.Wizard";
                 playerDAO.createPlayer(character);
                 printThings.Print("wizard");

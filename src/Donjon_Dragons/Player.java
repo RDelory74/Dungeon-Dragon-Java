@@ -1,4 +1,8 @@
 package Donjon_Dragons;
+import Item.Weapon;
+import Item.Defense;
+import Item.Item;
+
 import java.util.*;
 import java.util.UUID;
 
@@ -9,8 +13,8 @@ public abstract class Player {
     private String name;
     private int pv;
     private int strength;
-    private String weapon;
-    private String defense;
+    private Weapon weapon;
+    private Defense defense;
     private String type;
     private int exp;
     private int gold;
@@ -30,7 +34,6 @@ public abstract class Player {
         setLevel(1);
         this.inventory = new Inventory();
         this.inventoryCapacity = 0;
-
     }
 
     public Player() {
@@ -47,10 +50,10 @@ public abstract class Player {
         return "Nom:  " + this.name +
                 " || Points de vie:   " + this.pv +
                 " || Force:  " + this.strength +
-                " || Arme: " + this.weapon +
-                " || Défense: " + this.defense +
+                " || Arme: " + this.weapon.getName() + "("+this.weapon.getAttack()+")"+
+                " || Défense: " + this.defense.getName() +"("+this.defense.getDefense()+")"+
                 " || Type: " + this.type +
-                " || Level: " + this.exp +
+                " || Level: " + this.level +
                 " || Or: " + this.gold;
     }
 
@@ -79,19 +82,19 @@ public abstract class Player {
         this.strength = strength;
     }
 
-    public String getWeapon() {
+    public Weapon getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(String weapon) {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
-    public String getDefense() {
+    public Defense getDefense() {
         return defense;
     }
 
-    public void setDefense(String defense) {
+    public void setDefense(Defense defense) {
         this.defense = defense;
     }
 
@@ -131,28 +134,35 @@ public abstract class Player {
         return id;
     }
 
+    public int getInventoryCapacity() {
+        return inventoryCapacity;
+    }
+
+    public void setInventoryCapacity(int inventoryCapacity) {
+        this.inventoryCapacity = inventoryCapacity;
+    }
+
     // Méthode d'interaction avec mon inventaire
     public boolean canCarry(int weight) {
         return (inventoryCapacity + weight) <= strength;
 
     }
 
-    public void addItemToInventory(String item, int weight) {
+    public void addItemToInventory(Item item, int weight) {
         if (canCarry(weight)) {
             inventory.addItem(item);
             inventoryCapacity += weight;
-            System.out.println(item + " a été ajouté à l'inventaire.");
         } else {
             System.out.println("Vous ne pouvez pas porter cet objet, il est trop lourd.");
         }
     }
 
-    public void removeItemFromInventory(String item, int weight) {
+    public void removeItemFromInventory(Item item, int weight) {
         inventory.removeItem(item);
         inventoryCapacity -= weight;
     }
 
-    public void equipItem(String item) {
+    public void equipItem(Item item) {
         inventory.equipItem(item);
     }
 

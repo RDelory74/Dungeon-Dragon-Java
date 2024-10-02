@@ -1,6 +1,8 @@
 package db;
 
 import Donjon_Dragons.Player;
+import Item.PhiltresSoin.Philtre;
+import Item.Sortileges.Sort;
 import Type.Warrior;
 import Type.Wizard;
 
@@ -16,16 +18,22 @@ public class PlayerDAO extends ConnectionDAO {
     public void createPlayer(Player player) {
 
         // Méthode pour créer un joueur
-        String sql = "INSERT INTO Player(name, pv, strength, weapon, defense, type, exp, gold, level) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Player(id,name, pv, strength, weapon_id, defense_id, gold, exp, level, inventoryCapacity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            WeaponDAO weaponDAO = new WeaponDAO();
+            weaponDAO.createWeapon(player.getWeapon());
+
+            DefenseDAO defenseDAO = new DefenseDAO();
+            defenseDAO.createDefense(player.getDefense());
+
             pstmt.setString(1, player.getName());
             pstmt.setInt(2, player.getVie());
             pstmt.setInt(3, player.getStrength());
-            pstmt.setString(4, player.getWeapon());
-            pstmt.setString(5, player.getDefense());
+            pstmt.setString(4, player.getWeapon().getId().toString()); // new WeaponDAO creatWeapon retourn Id_weapon
+            pstmt.setString(5, player.getDefense().getId().toString());
             pstmt.setString(6, player.getType());
             pstmt.setInt(7, player.getExp());
             pstmt.setInt(8, player.getOr());
@@ -65,8 +73,11 @@ public class PlayerDAO extends ConnectionDAO {
                 if (player != null) {
                     player.setPv(rs.getInt("pv"));
                     player.setStrength(rs.getInt("strength"));
-                    player.setWeapon(rs.getString("weapon"));
-                    player.setDefense(rs.getString("defense"));
+                    if ("Wizard".equalsIgnoreCase(type)) {
+                        player.setWeapon(new Sort());
+                    } else if ("Warrior".equalsIgnoreCase(type)) {
+                        player.setDefense(new Philtre());
+                    }
                     player.setExp(rs.getInt("exp"));
                     player.setOr(rs.getInt("gold"));
                     player.setLevel(rs.getInt("level"));
@@ -90,8 +101,8 @@ public class PlayerDAO extends ConnectionDAO {
             pstmt.setString(1, player.getName());
             pstmt.setInt(2, player.getVie());
             pstmt.setInt(3, player.getStrength());
-            pstmt.setString(4, player.getWeapon());
-            pstmt.setString(5, player.getDefense());
+            pstmt.setString(4, player.getWeapon().getName());
+            pstmt.setString(5, player.getDefense().getName());
             pstmt.setString(6, player.getType());
             pstmt.setInt(7, player.getExp());
             pstmt.setInt(8, player.getOr());
@@ -134,8 +145,11 @@ public class PlayerDAO extends ConnectionDAO {
                     if (player != null) {
                         player.setPv(rs.getInt("pv"));
                         player.setStrength(rs.getInt("strength"));
-                        player.setWeapon(rs.getString("weapon"));
-                        player.setDefense(rs.getString("defense"));
+                        if ("Wizard".equalsIgnoreCase(type)) {
+                            player.setWeapon(new Sort());
+                        } else if ("Warrior".equalsIgnoreCase(type)) {
+                            player.setDefense(new Philtre());
+                        }
                         player.setExp(rs.getInt("exp"));
                         player.setOr(rs.getInt("gold"));
                         player.setLevel(rs.getInt("level"));
@@ -149,6 +163,25 @@ public class PlayerDAO extends ConnectionDAO {
         }
 
         return player;
+    }
+    public void deletePlayer(String playerId) {
+        String sql = "DELETE FROM Player WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, playerId); // Utiliser l'ID pour identifier le joueur à supprimer
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Player deleted successfully.");
+            } else {
+                System.out.println("Player not found.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error deleting player: " + e.getMessage());
+        }
     }
     public Player getLastPlayer() {
         String sql = "SELECT * FROM Player ORDER BY id DESC LIMIT 1";
@@ -171,8 +204,11 @@ public class PlayerDAO extends ConnectionDAO {
                 if (player != null) {
                     player.setPv(rs.getInt("pv"));
                     player.setStrength(rs.getInt("strength"));
-                    player.setWeapon(rs.getString("weapon"));
-                    player.setDefense(rs.getString("defense"));
+                    if ("Wizard".equalsIgnoreCase(type)) {
+                        player.setWeapon(new Sort());
+                    } else if ("Warrior".equalsIgnoreCase(type)) {
+                        player.setDefense(new Philtre());
+                    }
                     player.setExp(rs.getInt("exp"));
                     player.setOr(rs.getInt("or"));
                     player.setLevel(rs.getInt("level"));

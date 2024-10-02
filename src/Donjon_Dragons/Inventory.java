@@ -1,11 +1,12 @@
 package Donjon_Dragons;
 
+import Item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private List<String> items;  //
-    private String equippedItem;
+    private List<Item> items;  //
+    private Item equippedItem;
 
     public Inventory() {
         items = new ArrayList<>();
@@ -17,13 +18,13 @@ public class Inventory {
     }
 
     // Ajouter un objet à l'inventaire
-    public void addItem(String item) {
+    public void addItem(Item item) {
         items.add(item);
-        System.out.println(item + " ajouté à l'inventaire.");
+        System.out.println(item.getName() + " ajouté à l'inventaire.");
     }
 
     // Retirer un objet de l'inventaire
-    public void removeItem(String item) {
+    public void removeItem(Item item) {
         if (items.contains(item)) {
             items.remove(item);
             System.out.println(item + " retiré de l'inventaire.");
@@ -33,7 +34,7 @@ public class Inventory {
     }
 
     // Équiper un objet
-    public void equipItem(String item) {
+    public void equipItem(Item item) {
         if (items.contains(item)) {
             equippedItem = item;
             System.out.println(item + " est maintenant équipé.");
@@ -43,22 +44,22 @@ public class Inventory {
     }
 
     // Obtenir l'objet actuellement équipé
-    public String getEquippedItem() {
+    public Item getEquippedItem() {
         return equippedItem;
     }
 
     // Afficher le contenu de l'inventaire
     public void displayInventory() {
         System.out.println("Inventaire : " + items);
-        System.out.println("Objet équipé : " + (equippedItem != null ? equippedItem : "Aucun"));
+        System.out.println("Objet équipé : " + (equippedItem != null ? equippedItem : items.isEmpty()));
     }
     public void showInventory() {
         if (items.isEmpty()) {
             System.out.println(" Votre inventaire est vide.");
         } else {
             System.out.println("Votre inventaire contient :");
-            for (String item : items) {
-                System.out.println("- " + item);
+            for (Item item : items) {
+                System.out.println("- " + item.getName() + " Poids: " + item.getWeight() + "Valeur :" + item.getValue());
             }
         }
     }
