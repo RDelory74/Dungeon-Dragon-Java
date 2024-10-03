@@ -12,12 +12,50 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="aa461d9c-0728-40af-8d38-8496bb764205">
-      <console name="DonjonsEtDragons" type="STANDARD" schema="DonjonsEtDragons" session="Main" />
+      <console name="DonjonsEtDragons" type="STANDARD" schema="DonjonsEtDragons" session="Main"><![CDATA[CREATE TABLE Player (
+    id VARCHAR(36) PRIMARY KEY, -- UUID
+    name VARCHAR(255) NOT NULL, -- Nom du joueur
+    pv INT DEFAULT 10,          -- Points de vie
+    strength INT DEFAULT 10,    -- Force
+    weapon_id VARCHAR(36),              -- Référence à une arme (foreign key)
+    defense_id VARCHAR(36),             -- Référence à une défense (foreign key)
+    inventory_id VARCHAR(36)
+    type VARCHAR (255),         -- 
+    gold INT DEFAULT 0,         -- Or
+    exp INT DEFAULT 0,          -- Expérience
+    level INT DEFAULT 1,        -- Niveau
+    inventoryCapacity INT DEFAULT 0 -- Capacité de l'inventaire
+);
+
+
+CREATE TABLE Inventory (
+    id VARCHAR(36) PRIMARY KEY,
+);
+
+CREATE TABLE Defense (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    defense INT NOT NULL,
+    type VARCHAR(255) NOT NULL,
+    weight INT NOT NULL,
+    value INT NOT NULL,
+    inventory_id VARCHAR(36)
+);
+
+CREATE TABLE Weapon (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    attack INT NOT NULL,
+    type VARCHAR(255),
+    value INT NOT NULL,
+    weight INT NOT NULL,
+    inventory_id VARCHAR(36)
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -31,7 +69,9 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.Player" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.Weapon" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.defense" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.Defense" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="aa461d9c-0728-40af-8d38-8496bb764205" dataset="DonjonsEtDragons.weapon" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

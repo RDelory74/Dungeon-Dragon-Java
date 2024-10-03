@@ -1,0 +1,38 @@
+package fr.campus.dand.item.robe;
+
+import fr.campus.dand.boardgame.Case;
+import fr.campus.dand.item.philtressoin.Philtre;
+
+public class Robe_Apprentis extends Philtre implements Case {
+
+        // constructor
+        public Robe_Apprentis() {
+            super();
+            setName("Tunique d'apprentis");
+            setDefense(8);
+            setType("Robe de Mage");
+        }
+
+
+//method
+
+        @Override
+        public String toString() {
+            return "\n"+ "** Et à terre tu aperçois, flamboyant le prachemin " + getName() + "**"+
+                    "------------ "+getName()+"\n"+
+                    "|Defense     "+getDefense()+"\n"+
+                    "|Type:       "+getType()+"\n"+
+                    "------------------------\n";
+        }
+
+
+        @Override
+        public void use(){
+            System.out.println("* C'est beau, ceci est une méthode use *");
+        }
+
+
+    }
+
+
+
