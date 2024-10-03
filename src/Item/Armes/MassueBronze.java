@@ -6,6 +6,7 @@ public class MassueBronze extends Arme implements Case {
 
 // constructor
     public MassueBronze() {
+        super();
         setName("Massue en Bronze");
         setAttack(6);
         setWeaponType("Massue");

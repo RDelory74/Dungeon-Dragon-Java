@@ -7,7 +7,7 @@ public class Sort_Eau extends Sort implements Case {
 
     // constructor
     public Sort_Eau() {
-
+        super();
         setName("Sort Spalsh");
         setAttack(9);
         setWeaponType("Spell");

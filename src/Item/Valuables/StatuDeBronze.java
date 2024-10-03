@@ -8,7 +8,7 @@ import Item.Valuable;
 public  class StatuDeBronze extends Valuable implements Case {
 // constructor
     public StatuDeBronze() {
-
+        super();
         setName("Statuette de Bronze");
         setValue(500);
         setWeight(15);

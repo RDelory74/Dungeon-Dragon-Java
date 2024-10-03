@@ -6,7 +6,7 @@ public class Excalibur extends Arme implements Case {
 
 // constructor
     public Excalibur() {
-
+        super();
         setName("Excalibur");
         setAttack(10);
         setWeaponType("Sword");

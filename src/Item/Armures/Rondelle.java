@@ -4,13 +4,15 @@ import BoardGame.Case;
 
 public class Rondelle extends Bouclier implements Case {
 
-
+//
 // constructor
     public Rondelle() {
-
+        super();
         setName("Rondelle");
         setDefense(5);
         setType("Bouclier");
+        setWeight(2);
+        setValue(10);
     }
 
 

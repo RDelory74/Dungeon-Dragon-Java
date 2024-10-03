@@ -12,7 +12,7 @@ public class Robe_de_Mage extends Philtre implements Case {
 
         // constructor
         public Robe_de_Mage(String name, int defense) {
-
+            super();
             setName(name);
             setDefense(defense);
             setType("Robe de Mage");
@@ -20,6 +20,7 @@ public class Robe_de_Mage extends Philtre implements Case {
         }
 
         public Robe_de_Mage() {
+            super();
             setType("Robe de Mage");
             setWeight(4);
         }

@@ -21,6 +21,7 @@ public abstract class Valuable extends Item implements Case {
 }
 
     public Valuable() {
+        super();
     }
 
 //method

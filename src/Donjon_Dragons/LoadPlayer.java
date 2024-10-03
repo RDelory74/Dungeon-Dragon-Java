@@ -26,10 +26,11 @@ public class LoadPlayer {
             for (Player player : players) {
                 System.out.println(player);
             }
-            System.out.println("Quel personnage souhaitez-vous charger ?   ");
+            System.out.println("\nQuel personnage souhaitez-vous charger ?   ");
             String characterName = sc.nextLine();
             Player character = playerDAO.getPlayerByName(characterName);
             if (character != null) {
+                System.out.println("Chargement player with ID: " + character.getId());
                 System.out.println("Le joueur suivant a été chargé : " + character);
                 Game game = new Game("IN_PROGRESS");
                 game.startGame(character);

@@ -7,7 +7,7 @@ public class Sort_Apprentis extends Sort implements Case {
 
     // constructor
     public Sort_Apprentis() {
-
+        super();
         setName("Sort d'apprentis");
         setAttack(6);
         setWeaponType("Spell");

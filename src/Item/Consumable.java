@@ -22,6 +22,7 @@ public abstract class Consumable extends Item implements Case {
     }
 
     public Consumable() {
+        super();
     }
 
     //method

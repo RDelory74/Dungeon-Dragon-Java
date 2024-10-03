@@ -19,11 +19,13 @@ public abstract class Player {
     private int exp;
     private int gold;
     private int level;
+
     private Inventory inventory;
     private int inventoryCapacity;
 
 
     // constructor
+
 
     public Player(String name) {
         this.id = UUID.randomUUID();
@@ -58,6 +60,12 @@ public abstract class Player {
     }
 
     //getter setter
+
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

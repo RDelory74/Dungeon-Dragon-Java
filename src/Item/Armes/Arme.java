@@ -25,11 +25,12 @@ public class Arme extends Weapon implements Case {
 
     @Override
     public String toString() {
-        return  "\n"+"** Et à terre tu aperçois " + getName() + "**"+"\n"+
+        return  "-------------------------------------------------------"+
+                "\n\n"+"** Et à terre tu aperçois " + getName() + "**"+"\n\n"+
                 "------------ "+getName()+"\n"+
                 "|Attack:     "+getAttack()+"\n"+
                 "|Type:       "+getWeaponType()+"\n"+
-                "------------------------\n";
+                "--------------------------------------------------------\n";
     }
     @Override
     public void interact (Player character, PrintAcs printThings){
@@ -38,7 +39,7 @@ public class Arme extends Weapon implements Case {
         if(character instanceof Wizard){
             System.out.println("* Elle est si belle, mais même à deux mains tu ne peux la lever *");
         } else {
-            System.out.println("* Tu es actuelement équipé de "+ character.getWeapon().getName()+", souhaites-tu remplacer par"+ getName() + " ? *");
+            System.out.println("* Tu es actuelement équipé de "+ character.getWeapon().getName()+", souhaites-tu remplacer par "+ getName() + " ? *");
             System.out.println("Actual attack : "+character.getWeapon().getAttack()+" New attack:"+ getAttack() +"." );
             System.out.println("* 1. Oui, je la veux !! *");
             System.out.println("* 2. Non, je garde mon arme "+character.getWeapon().getName()+" et laisse " +getName()+ "ici !! *");

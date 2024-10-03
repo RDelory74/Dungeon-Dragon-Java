@@ -20,6 +20,7 @@ public class Sort extends Weapon implements Case {
         setWeight(1);
     }
     public Sort() {
+        super();
         setWeight(1);
     }
 //method

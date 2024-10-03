@@ -15,6 +15,7 @@ public Defense(String name) {
 }
 
     public Defense() {
+    super();
     }
 
 //method
@@ -45,8 +46,8 @@ public Defense(String name) {
     public String getType() {
         return defenseType;
     }
-    
-    public void setType(String type) {
+
+    public void setType(String defenseType) {
         this.defenseType = defenseType;
     }
 

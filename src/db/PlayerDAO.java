@@ -1,14 +1,17 @@
 package db;
 
 import Donjon_Dragons.Player;
-import Item.PhiltresSoin.Philtre;
-import Item.Sortileges.Sort;
+import Item.Defense;
+import Item.Weapon;
 import Type.Warrior;
 import Type.Wizard;
+import db.DefenseDAO;
+import db.WeaponDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class PlayerDAO extends ConnectionDAO {
@@ -18,7 +21,7 @@ public class PlayerDAO extends ConnectionDAO {
     public void createPlayer(Player player) {
 
         // Méthode pour créer un joueur
-        String sql = "INSERT INTO Player(id,name, pv, strength, weapon_id, defense_id, gold, exp, level, inventoryCapacity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Player(id,name, pv, strength, weapon_id, defense_id,type, gold, exp, level, inventoryCapacity) VALUES(?, ?,?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -29,15 +32,17 @@ public class PlayerDAO extends ConnectionDAO {
             DefenseDAO defenseDAO = new DefenseDAO();
             defenseDAO.createDefense(player.getDefense());
 
-            pstmt.setString(1, player.getName());
-            pstmt.setInt(2, player.getVie());
-            pstmt.setInt(3, player.getStrength());
-            pstmt.setString(4, player.getWeapon().getId().toString()); // new WeaponDAO creatWeapon retourn Id_weapon
-            pstmt.setString(5, player.getDefense().getId().toString());
-            pstmt.setString(6, player.getType());
-            pstmt.setInt(7, player.getExp());
+            pstmt.setString(1, player.getId().toString());
+            pstmt.setString(2, player.getName());
+            pstmt.setInt(3, player.getVie());
+            pstmt.setInt(4, player.getStrength());
+            pstmt.setString(5, player.getWeapon().getId().toString()); // new WeaponDAO creatWeapon retourn Id_weapon
+            pstmt.setString(6, player.getDefense().getId().toString());
+            pstmt.setString(7, player.getType());
             pstmt.setInt(8, player.getOr());
-            pstmt.setInt(9, player.getLevel());
+            pstmt.setInt(9, player.getExp());
+            pstmt.setInt(10, player.getLevel());
+            pstmt.setInt(11, player.getInventoryCapacity());
 
             pstmt.executeUpdate();
             System.out.println("Player created successfully.");
@@ -59,55 +64,56 @@ public class PlayerDAO extends ConnectionDAO {
 
 
             while (rs.next()) {
-                Player player = null;
-                String type = rs.getString("type");
+                System.out.print("Sauvegarde "+ rs.getString("name") +
+                        " || " + rs.getString("type") +
+                        " || "+ rs.getString("pv") +" Point de vie"+
+                        " || " + rs.getString("strength")+" Force"+
+                        " || "+ rs.getString("gold") +" Or"+
+                        " || "+ rs.getString("Level") +" Level"+
+                        " || "+ rs.getString("inventoryCapacity")+"\n");
 
-                // Instanciation selon le type
-                if ("Wizard".equalsIgnoreCase(type)) {
-                    player = new Wizard(rs.getString("name"));
-                } else if ("Warrior".equalsIgnoreCase(type)) {
-                    player = new Warrior(rs.getString("name"));
-                }
 
-                // Remplir les attributs du joueur
-                if (player != null) {
-                    player.setPv(rs.getInt("pv"));
-                    player.setStrength(rs.getInt("strength"));
-                    if ("Wizard".equalsIgnoreCase(type)) {
-                        player.setWeapon(new Sort());
-                    } else if ("Warrior".equalsIgnoreCase(type)) {
-                        player.setDefense(new Philtre());
-                    }
-                    player.setExp(rs.getInt("exp"));
-                    player.setOr(rs.getInt("gold"));
-                    player.setLevel(rs.getInt("level"));
-                    players.add(player);
-                }
+
+                /*Player player = null;
+                player.(rs.getString("name"));
+                player.setPv(rs.getInt("pv"));
+                player.setStrength(rs.getInt("strength"));
+                player.setWeapon(player.getWeapon());
+                player.setDefense(player.getDefense());
+                player.setExp(rs.getInt("exp"));
+                player.setOr(rs.getInt("gold"));
+                player.setLevel(rs.getInt("level"));
+                player.setInventoryCapacity(rs.getInt("inventoryCapacity"));
+                players.add(player);
+
+                System.out.print(player);*/
+
             }
-
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return players;
     }
     public void updatePlayer(Player player) {
-        String sql = "UPDATE Player SET name = ?, pv = ?, strength = ?, weapon = ?, defense = ?, type = ?, exp = ?, gold = ?, level = ? WHERE id = ?";
+        String sql = "UPDATE Player SET name = ?, pv = ?, strength = ?, weapon_id = ?, defense_id = ?,type =?, gold = ?, exp = ?, level = ?, inventoryCapacity = ? WHERE id = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+
 
             // Mettre à jour les informations du joueur
             pstmt.setString(1, player.getName());
             pstmt.setInt(2, player.getVie());
             pstmt.setInt(3, player.getStrength());
-            pstmt.setString(4, player.getWeapon().getName());
-            pstmt.setString(5, player.getDefense().getName());
+            pstmt.setString(4, player.getWeapon().getId().toString());
+            pstmt.setString(5, player.getDefense().getId().toString());
             pstmt.setString(6, player.getType());
-            pstmt.setInt(7, player.getExp());
-            pstmt.setInt(8, player.getOr());
+            pstmt.setInt(7, player.getOr());
+            pstmt.setInt(8, player.getExp());
             pstmt.setInt(9, player.getLevel());
-            pstmt.setString(10, player.getId().toString()); // Utilise l'ID comme clé
+            pstmt.setInt(10, player.getInventoryCapacity());
+            pstmt.setString(11, player.getId().toString());
 
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
@@ -130,7 +136,6 @@ public class PlayerDAO extends ConnectionDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, playerName); // Requête basée sur le nom du joueur
-
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     // Vérification du type pour instancier la bonne sous-classe (Warrior ou Wizard)
@@ -140,22 +145,26 @@ public class PlayerDAO extends ConnectionDAO {
                     } else if ("Wizard".equalsIgnoreCase(type)) {
                         player = new Wizard(rs.getString("name"));
                     }
-
                     // Remplir les autres attributs
                     if (player != null) {
+                        player.setId(UUID.fromString(rs.getString("id")));
                         player.setPv(rs.getInt("pv"));
                         player.setStrength(rs.getInt("strength"));
-                        if ("Wizard".equalsIgnoreCase(type)) {
-                            player.setWeapon(new Sort());
-                        } else if ("Warrior".equalsIgnoreCase(type)) {
-                            player.setDefense(new Philtre());
-                        }
+
+                        WeaponDAO weaponDAO = new WeaponDAO();
+                        DefenseDAO defenseDAO = new DefenseDAO();
+
+                        player.setWeapon(weaponDAO.getWeaponById(rs.getString("weapon_id")));
+                        player.setDefense(defenseDAO.getDefenseById(rs.getString("defense_id")));
+
+
                         player.setExp(rs.getInt("exp"));
                         player.setOr(rs.getInt("gold"));
                         player.setLevel(rs.getInt("level"));
+                        player.setInventoryCapacity(rs.getInt("inventoryCapacity"));
                     }
                 } else {
-                    System.out.println("Player not found.");
+                    System.out.println("No players found.");
                 }
             }
         } catch (SQLException e) {
@@ -199,19 +208,16 @@ public class PlayerDAO extends ConnectionDAO {
                 } else if ("Wizard".equalsIgnoreCase(type)) {
                     player = new Wizard(rs.getString("name"));
                 }
-
                 // Remplir les autres attributs
                 if (player != null) {
                     player.setPv(rs.getInt("pv"));
                     player.setStrength(rs.getInt("strength"));
-                    if ("Wizard".equalsIgnoreCase(type)) {
-                        player.setWeapon(new Sort());
-                    } else if ("Warrior".equalsIgnoreCase(type)) {
-                        player.setDefense(new Philtre());
-                    }
+                    player.setWeapon(player.getWeapon());
+                    player.setDefense(player.getDefense());
                     player.setExp(rs.getInt("exp"));
-                    player.setOr(rs.getInt("or"));
+                    player.setOr(rs.getInt("gold"));
                     player.setLevel(rs.getInt("level"));
+                    player.setInventoryCapacity(rs.getInt("inventoryCapacity"));
                 }
             } else {
                 System.out.println("No players found.");
@@ -222,4 +228,5 @@ public class PlayerDAO extends ConnectionDAO {
 
         return player;
     }
+
 }

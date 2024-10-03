@@ -6,7 +6,7 @@ public class TheMassue extends Arme implements Case {
 
 // constructor
     public TheMassue() {
-
+        super();
         setName("The Massue");
         setAttack(12);
         setWeaponType("Massue");

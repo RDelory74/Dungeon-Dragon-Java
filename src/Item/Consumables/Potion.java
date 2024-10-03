@@ -9,12 +9,14 @@ import java.util.Scanner;
 public  class Potion extends Consumable implements Case {
 // constructor
     public Potion(String name, int effect, String type) {
+        super();
         setName(name);
         setEffect(effect);
         setType(type);
     }
 
     public Potion() {
+        super();
     }
 //method
 @Override

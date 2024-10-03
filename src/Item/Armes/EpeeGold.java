@@ -6,7 +6,7 @@ public class EpeeGold extends Arme implements Case {
 
 // constructor
     public EpeeGold() {
-
+        super();
         setName("Epee en Or");
         setAttack(7);
         setWeaponType("Sword");

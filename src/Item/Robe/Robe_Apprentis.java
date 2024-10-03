@@ -12,7 +12,7 @@ public class Robe_Apprentis extends Philtre implements Case {
 
         // constructor
         public Robe_Apprentis() {
-
+            super();
             setName("Tunique d'apprentis");
             setDefense(8);
             setType("Robe de Mage");

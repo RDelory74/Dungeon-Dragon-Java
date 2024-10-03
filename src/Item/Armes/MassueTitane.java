@@ -6,7 +6,7 @@ public class MassueTitane extends Arme implements Case {
 
 // constructor
     public MassueTitane() {
-
+        super();
         setName("Massue de titane");
         setAttack(10);
         setWeaponType("Massue");

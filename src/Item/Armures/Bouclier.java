@@ -13,7 +13,7 @@ public class Bouclier extends Defense implements Case {
 
 // constructor
     public Bouclier(String name, int defense, String type) {
-
+        super();
         setName(name);
         setDefense(defense);
         setType(type);
@@ -22,8 +22,8 @@ public class Bouclier extends Defense implements Case {
     }
 
     public Bouclier() {
-        setWeight(2);
-        setValue(10);
+        super();
+
     }
 //method
 

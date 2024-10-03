@@ -6,7 +6,7 @@ public class EpeeTitane extends Arme implements Case {
 
 // constructor
     public EpeeTitane() {
-
+        super();
         setName("Epee de titane");
         setAttack(9);
         setWeaponType("Sword");

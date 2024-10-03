@@ -6,7 +6,7 @@ public class MassueGold extends Arme implements Case {
 
 // constructor
     public MassueGold() {
-
+        super();
         setName("Massue en Or");
         setAttack(8);
         setWeaponType("Massue");

@@ -3,7 +3,7 @@ package Item.Armes;
 import BoardGame.Case;
 
 public class EpeeBronze extends Arme implements Case {
-
+//id, name,attack, type, value, weight
 // constructor
     public EpeeBronze() {
         super();

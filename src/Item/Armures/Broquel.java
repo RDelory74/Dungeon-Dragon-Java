@@ -7,11 +7,13 @@ public class Broquel extends Bouclier implements Case {
 
 // constructor
     public Broquel() {
-
+        super();
         setName("Broquel");
         setDefense(10);
         setType("Bouclier");
+        setWeight(2);
         setValue(100);
+
     }
 
 

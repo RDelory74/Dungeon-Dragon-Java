@@ -3,12 +3,17 @@ package Donjon_Dragons;
 import Item.Item;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Inventory {
+    private UUID id;
     private List<Item> items;  //
     private Item equippedItem;
 
+
+
     public Inventory() {
+        this.id = UUID.randomUUID();
         items = new ArrayList<>();
         equippedItem = null;
     }
@@ -59,8 +64,16 @@ public class Inventory {
         } else {
             System.out.println("Votre inventaire contient :");
             for (Item item : items) {
-                System.out.println("- " + item.getName() + " Poids: " + item.getWeight() + "Valeur :" + item.getValue());
+                System.out.println("- " + item.getName() + " || Poids: " + item.getWeight() + " || Valeur :" + item.getValue()+"Po");
             }
         }
+    }
+    //Setter getter
+    public UUID getId() {
+        return id;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

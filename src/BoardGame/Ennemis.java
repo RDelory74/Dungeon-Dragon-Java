@@ -63,7 +63,7 @@ public  class Ennemis implements Case {
         //boucle de combat
         while ( getPv() > 0 || character.getVie()> 0) {
 
-            System.out.println("* Appuis sur 1 pour faire une attaque avec " + character.getWeapon() + " infligeant " + character.getStrength() + " de dégats !!! *");
+            System.out.println("* Appuis sur 1 pour faire une attaque avec " + character.getWeapon().getName() + " infligeant " + character.getStrength() + " de dégats !!! *");
             System.out.println("* Appuis sur 2 pour Pour tenter de fuir le combat  *");
             System.out.println("*Dans la boucle character.getVie(); =" +character.getVie()+" PV*");
 
@@ -117,6 +117,7 @@ public  class Ennemis implements Case {
                 } else {
                     System.out.println("* ... mal gérée, tu t'échappes mais tu prends une attaque d'opprotunitée, " + getName() + " t'infligeant " + getAttack() + " de dégats !!! *");
                     character.setPv(character.getVie()-getAttack());
+                    break;
                 }
             }
         }
@@ -126,12 +127,14 @@ public  class Ennemis implements Case {
             int orGagne = random.nextInt(1,10);
             int newOr = character.getOr() + orGagne;
             printThings.Print("victoire");
+            System.out.println("----------------------------------------------------------------------------");
             System.out.println("* ... VICTOIRE!!!! "+ getName() + " est mort, "+ character.getName() + " remporte ce combat et continue sa route *");
             System.out.println(character.getName() + " gagne " + xpGagne +"XP // Total XP = "+newXp + " *");
             character.setExp(newXp);
             System.out.println("De plus "+character.getName() + " ramasse " + orGagne +" pièces d'or *");
             character.setOr(newOr);
             character.levelUp();
+            System.out.println("----------------------------------------------------------------------------");
 
         } else if (character.getVie() <=0){
             System.out.println("* Mais t'es mort !!!  *");

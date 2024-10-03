@@ -7,7 +7,7 @@ public class Sort_Feu extends Sort implements Case {
 
     // constructor
     public Sort_Feu() {
-
+        super();
         setName("Sort Flameche");
         setAttack(4);
         setWeaponType("Spell");

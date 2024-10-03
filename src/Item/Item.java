@@ -16,8 +16,12 @@ public abstract class Item {
         this.value = value;
     }
 
-    public Item() {
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
+    public Item() {
+        this.id = UUID.randomUUID();
     }
     //Méthode abstract
     public abstract void use();

@@ -13,13 +13,14 @@ public class Philtre extends Defense implements Case {
 
     // constructor
     public Philtre(String name, int defense, String type) {
-
+        super();
         setName(name);
         setDefense(defense);
         setType(type);
     }
 
     public Philtre() {
+        super();
     }
 //method
 

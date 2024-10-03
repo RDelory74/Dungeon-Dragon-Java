@@ -6,7 +6,7 @@ import BoardGame.Case;
 public  class Potion_Gd_Soin extends Potion implements Case {
 // constructor
     public Potion_Gd_Soin() {
-
+        super();
         setName("Potion de grand Soin");
         setEffect(10);
         setType("Potion");

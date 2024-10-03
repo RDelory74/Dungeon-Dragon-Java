@@ -7,10 +7,12 @@ public class Adarga extends Bouclier implements Case {
 
 // constructor
     public Adarga() {
-
+        super();
         setName("Adarga");
         setDefense(8);
         setType("Bouclier");
+        setWeight(2);
+        setValue(10);
     }
 
 

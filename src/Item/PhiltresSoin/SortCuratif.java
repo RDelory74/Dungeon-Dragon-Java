@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class SortCuratif extends Philtre implements Case {
     public SortCuratif() {
+        super();
         setName("Sort de Soin");
         setDefense(5);
         setType("Heal");
