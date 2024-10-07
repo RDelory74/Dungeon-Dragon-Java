@@ -1,0 +1,15 @@
+unnamed package
+fr.campus.dand.boardgame
+fr.campus.dand.db
+fr.campus.dand.engine
+fr.campus.dand.item
+fr.campus.dand.item.armes
+fr.campus.dand.item.armures
+fr.campus.dand.item.consumables
+fr.campus.dand.item.philtressoin
+fr.campus.dand.item.robe
+fr.campus.dand.item.sortileges
+fr.campus.dand.item.valuables
+fr.campus.dand.myexceptions
+fr.campus.dand.print
+fr.campus.dand.type

@@ -1,5 +1,5 @@
 package fr.campus.dand.type;
-import fr.campus.dand.donjon_dragons.Player;
+import fr.campus.dand.engine.Player;
 import fr.campus.dand.item.philtressoin.SortCuratif;
 import fr.campus.dand.item.sortileges.Sort_Apprentis;
 

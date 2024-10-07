@@ -1,7 +1,7 @@
 package fr.campus.dand.item.armures;
 
 import fr.campus.dand.boardgame.Case;
-import fr.campus.dand.donjon_dragons.Player;
+import fr.campus.dand.engine.Player;
 import fr.campus.dand.item.Defense;
 import fr.campus.dand.print.PrintAcs;
 import fr.campus.dand.type.Warrior;

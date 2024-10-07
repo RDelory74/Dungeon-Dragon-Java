@@ -1,5 +1,5 @@
 package fr.campus.dand.boardgame;
-import fr.campus.dand.donjon_dragons.Player;
+import fr.campus.dand.engine.Player;
 import fr.campus.dand.print.PrintAcs;
 import fr.campus.dand.db.PlayerDAO;
 

@@ -1,6 +1,6 @@
 package fr.campus.dand.db;
 
-import fr.campus.dand.donjon_dragons.Player;
+import fr.campus.dand.engine.Player;
 import fr.campus.dand.type.Warrior;
 import fr.campus.dand.type.Wizard;
 

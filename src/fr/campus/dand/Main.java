@@ -1,6 +1,6 @@
 package fr.campus.dand;
 
-import fr.campus.dand.donjon_dragons.LoadPlayer;
+import fr.campus.dand.engine.LoadPlayer;
 import fr.campus.dand.print.PrintAcs;
 import fr.campus.dand.db.PlayerDAO;
 

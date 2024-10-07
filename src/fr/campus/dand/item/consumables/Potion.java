@@ -1,6 +1,6 @@
 package fr.campus.dand.item.consumables;
 import fr.campus.dand.boardgame.Case;
-import fr.campus.dand.donjon_dragons.Player;
+import fr.campus.dand.engine.Player;
 import fr.campus.dand.item.Consumable;
 import fr.campus.dand.print.PrintAcs;
 
