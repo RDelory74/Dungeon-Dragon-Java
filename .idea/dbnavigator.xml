@@ -62,10 +62,7 @@ CREATE TABLE Weapon (
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="aa461d9c-0728-40af-8d38-8496bb764205" object-ref="schemas/DonjonsEtDragons/tables/Player" />
-      <object connection-id="aa461d9c-0728-40af-8d38-8496bb764205" object-ref="schemas/DonjonsEtDragons/tables/Weapon" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="aa461d9c-0728-40af-8d38-8496bb764205" />
